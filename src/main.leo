@@ -59,4 +59,11 @@ program token.aleo {
         let prev: u64 = Mapping::get(balance, receiver);
         Mapping::set(balance, receiver, prev - amount);
     }
+
+    transition join(input: Token, input2: Token) -> Token {
+        return Token {
+            owner: self.caller,
+            balance: input.balance + input2.balance,
+        };
+    }
 }
